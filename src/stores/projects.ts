@@ -71,29 +71,26 @@ export const useProjectsStore = create<ProjectsState>()(
         }));
 
         if (typeof window !== 'undefined') {
-          localStorage.setItem(
-            'projects',
-            JSON.stringify({ state: { projects: values } })
-          );
+          localStorage.setItem('projects', JSON.stringify({ state: { projects: values } }));
         }
       },
 
-resetToDefault: () => {
-  const defaultProjects = resumeData.projects?.map((proj: any) => ({
-    id: uuidv4(),
-    title: proj.title ?? '',
-    description: proj.description ?? '',
-    techStack: proj.techStack ?? '',
-    url: proj.url ?? '',
-    startDate: proj.startDate ?? null,
-    endDate: proj.endDate ?? null,
-    isOngoing: proj.isOngoing ?? false,
-    highlights: proj.highlights ?? [],
-  })) ?? [];
+      resetToDefault: () => {
+        const defaultProjects =
+          resumeData.projects?.map((proj: any) => ({
+            id: uuidv4(),
+            title: proj.title ?? '',
+            description: proj.description ?? '',
+            techStack: proj.techStack ?? '',
+            url: proj.url ?? '',
+            startDate: proj.startDate ?? null,
+            endDate: proj.endDate ?? null,
+            isOngoing: proj.isOngoing ?? false,
+            highlights: proj.highlights ?? [],
+          })) ?? [];
 
-  set({ projects: defaultProjects });
-},
-
+        set({ projects: defaultProjects });
+      },
 
       onmoveup: (index) =>
         set(

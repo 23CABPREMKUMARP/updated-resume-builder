@@ -29,10 +29,7 @@ const HobbiesLayout = () => {
             placeholder={`Hobby ${index + 1}`}
             onChange={(e) => update(index, e.target.value)}
           />
-          <button
-            onClick={() => remove(index)}
-            className="text-red-500 text-sm"
-          >
+          <button onClick={() => remove(index)} className="text-red-500 text-sm">
             ✕
           </button>
         </div>

@@ -71,8 +71,7 @@
       { "name": "Java", "level": 3 },
       { "name": "SQL", "level": 3 },
       { "name": "Data Structures", "level": 3 },
-      {"name":"Python", "level": 3}
-  
+      { "name": "Python", "level": 3 }
     ],
     "libraries": [
       { "name": "jQuery", "level": 3 },
@@ -188,95 +187,82 @@
       "isVolunteeringNow": false
     }
   ],
-"awards": [
-  {
-    "id": "1",
-    "title": "Winner - Code Sprint 2.0",
-    "date": "2023-03-10",
-    "awarder": "Department of Computer Applications",
-    "summary": "Secured 1st place in an inter-department coding competition."
-  },
-  {
-    "id": "2",
-    "title": "Best Project Presentation",
-    "date": "2024-02-15",
-    "awarder": "Tech Fest - INFOVISTA",
-    "summary": "Awarded for presenting an innovative web application with real-time features."
-  },
-  {
-    "id": "3",
-    "title": "Runner-Up - Debugging Contest",
-    "date": "2023-08-20",
-    "awarder": "CSI Student Chapter",
-    "summary": "Achieved 2nd place in a code debugging challenge among 50+ participants."
-  },
-  {
-    "id": "4",
-    "title": "Certificate of Participation",
-    "date": "2022-11-05",
-    "awarder": "Intra-College Tech Carnival",
-"summary": "Participated in a college-level web design challenge showcasing a responsive UI/UX with clean layout and smooth navigation across devices."
+  "awards": [
+    {
+      "id": "1",
+      "title": "Winner - Code Sprint 2.0",
+      "date": "2023-03-10",
+      "awarder": "Department of Computer Applications",
+      "summary": "Secured 1st place in an inter-department coding competition."
+    },
+    {
+      "id": "2",
+      "title": "Best Project Presentation",
+      "date": "2024-02-15",
+      "awarder": "Tech Fest - INFOVISTA",
+      "summary": "Awarded for presenting an innovative web application with real-time features."
+    },
+    {
+      "id": "3",
+      "title": "Runner-Up - Debugging Contest",
+      "date": "2023-08-20",
+      "awarder": "CSI Student Chapter",
+      "summary": "Achieved 2nd place in a code debugging challenge among 50+ participants."
+    },
+    {
+      "id": "4",
+      "title": "Certificate of Participation",
+      "date": "2022-11-05",
+      "awarder": "Intra-College Tech Carnival",
+      "summary": "Participated in a college-level web design challenge showcasing a responsive UI/UX with clean layout and smooth navigation across devices."
+    }
+  ],
+  "languages": [
+    {
+      "id": "1",
+      "language": "English",
+      "proficiency": "Fluent"
+    },
+    {
+      "id": "2",
+      "language": "Tamil",
+      "proficiency": "Native"
+    },
+    {
+      "id": "3",
+      "language": "Hindi",
+      "proficiency": "Conversational"
+    }
+  ],
 
-  }
-],
-"languages": [
-  {
-    "id": "1",
-    "language": "English",
-    "proficiency": "Fluent"
-  },
-  {
-    "id": "2",
-    "language": "Tamil",
-    "proficiency": "Native"
-  },
-  {
-    "id": "3",
-    "language": "Hindi",
-    "proficiency": "Conversational"
-  }
-],
-
-"projects": [
-  {
-    "id": "1",
-    "title": "My App",
-    "techStack": "React, Node.js",
-    "Url": "https://example.com",
-    "startDate": "2023-01-01",
-    "endDate": "2023-06-01",
-    "isOngoing": false,
-    "description": "Built a full-stack MERN app with authentication and real-time chat.",
-    "highlights": ["User login system", "Socket.io chat", "MongoDB storage"]
-  },
-  {
-    "id": "2",
-    "title": "Resume Builder",
-    "techStack": "React, Zustand, Material UI",
-    "Url": "https://prem6.netlify.app",
-    "startDate": "2024-12-01",
-    "endDate": "2025-04-01",
-    "isOngoing": false,
-    "description": "Created a dynamic resume builder with real-time editing, state management, and section preview.",
-    "highlights": [
-      "Implemented dynamic resume templates using Zustand for state management",
-      "Integrated JSON data with editor and viewer components",
-      "Added persistent localStorage state saving and project section rendering"
-    
-  ]
-  }
-],
-"hobbies": [
-  "Reading tech blogs",
-  "Cycling",
-  "Contributing to open-source",
-  "Playing chess"
-]
-,
-"softSkills": [
-  "Teamwork",
-  "Communication",
-  "Time Management",
-  "Adaptability"
-]
+  "projects": [
+    {
+      "id": "1",
+      "title": "My App",
+      "techStack": "React, Node.js",
+      "Url": "https://example.com",
+      "startDate": "2023-01-01",
+      "endDate": "2023-06-01",
+      "isOngoing": false,
+      "description": "Built a full-stack MERN app with authentication and real-time chat.",
+      "highlights": ["User login system", "Socket.io chat", "MongoDB storage"]
+    },
+    {
+      "id": "2",
+      "title": "Resume Builder",
+      "techStack": "React, Zustand, Material UI",
+      "Url": "https://prem6.netlify.app",
+      "startDate": "2024-12-01",
+      "endDate": "2025-04-01",
+      "isOngoing": false,
+      "description": "Created a dynamic resume builder with real-time editing, state management, and section preview.",
+      "highlights": [
+        "Implemented dynamic resume templates using Zustand for state management",
+        "Integrated JSON data with editor and viewer components",
+        "Added persistent localStorage state saving and project section rendering"
+      ]
+    }
+  ],
+  "hobbies": ["Reading tech blogs", "Cycling", "Contributing to open-source", "Playing chess"],
+  "softSkills": ["Teamwork", "Communication", "Time Management", "Adaptability"]
 }

@@ -21,10 +21,10 @@ const ResumeHydrator = () => {
     }
 
     const { languages, set } = useLanguagesStore.getState();
-  if (languages.length === 0 && resumeData.languages) {
-    set(resumeData.languages); // ✅ Make sure data matches ILanguageItem[]
-  }
-}, []);
+    if (languages.length === 0 && resumeData.languages) {
+      set(resumeData.languages); // ✅ Make sure data matches ILanguageItem[]
+    }
+  }, []);
 
   return null;
 };

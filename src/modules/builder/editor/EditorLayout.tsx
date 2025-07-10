@@ -14,7 +14,7 @@ import { StateContext } from '@/modules/builder/resume/ResumeLayout';
 import LanguageLayout from '@/modules/builder/editor/modules/languages/LanguageLayout';
 import ProjectLayout from '@/modules/builder/editor/modules/experience/Projects/ProjectLayout';
 import ResumeHydrator from '@/helpers/common/components/ResumeHydrator';
-        <ProjectLayout />
+<ProjectLayout />;
 
 const EditorLayout = () => {
   const [link, setLink] = useState('');

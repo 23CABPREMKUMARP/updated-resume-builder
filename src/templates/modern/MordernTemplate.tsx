@@ -90,29 +90,25 @@ export default function MordernTemplate() {
           </SectionValidator>
 
           <SectionValidator value={resumeDataFromContext.skills.technologies}>
-            <SkillsSection
-              title="Technologies"
-              list={resumeDataFromContext.skills.technologies}
-            />
+            <SkillsSection title="Technologies" list={resumeDataFromContext.skills.technologies} />
           </SectionValidator>
 
           <SectionValidator value={resumeDataFromContext.skills.frameworks}>
             <SkillsSection
               title="Frameworks & Libraries"
-              list={resumeDataFromContext.skills.frameworks.concat(resumeDataFromContext.skills.libraries)}
+              list={resumeDataFromContext.skills.frameworks.concat(
+                resumeDataFromContext.skills.libraries
+              )}
             />
           </SectionValidator>
 
           <SectionValidator value={resumeDataFromContext.skills.tools}>
             <SkillsSection title="Tools" list={resumeDataFromContext.skills.tools} />
           </SectionValidator>
-{projects.length > 0 && <ProjectsSection />}
-
-         
+          {projects.length > 0 && <ProjectsSection />}
         </div>
 
         <div className="basis-[40%] p-3">
-          
           <HobbiesSection />
 
           <SectionValidator value={softSkills.map((s) => ({ name: s, level: 0 }))}>
@@ -122,15 +118,14 @@ export default function MordernTemplate() {
             />
           </SectionValidator>
 
-
-<ValidSectionRenderer value={languages}>
-  <LanguagesSection />
-</ValidSectionRenderer>
+          <ValidSectionRenderer value={languages}>
+            <LanguagesSection />
+          </ValidSectionRenderer>
 
           <SectionValidator value={resumeDataFromContext.volunteer}>
             <VolunteerSection volunteer={resumeDataFromContext.volunteer} />
           </SectionValidator>
-             <SectionValidator value={resumeDataFromContext.awards}>
+          <SectionValidator value={resumeDataFromContext.awards}>
             <AwardSection awardsReceived={resumeDataFromContext.awards} />
           </SectionValidator>
         </div>

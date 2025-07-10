@@ -18,7 +18,7 @@ const ProjectsSection = () => {
   if (!projects.length) return null;
 
   return (
-  <div ref={ref} className="mb-4">
+    <div ref={ref} className="mb-4">
       <SectionHeading title="Projects" />
       {projects.map((proj, idx) => (
         <div key={proj.id} className="mb-4">
@@ -56,7 +56,6 @@ const ProjectsSection = () => {
         </div>
       ))}
     </div>
-    
   );
 };
 

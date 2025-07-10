@@ -10,19 +10,14 @@
 
   background-color: #fcf9f9;
   background-image:
-    repeating-linear-gradient(
-      to right, transparent 0 100px, #25283b22 100px 101px
-    ),
-    repeating-linear-gradient(
-      to bottom, transparent 0 100px, #25283b22 100px 101px
-    ),
+    repeating-linear-gradient(to right, transparent 0 100px, #25283b22 100px 101px),
+    repeating-linear-gradient(to bottom, transparent 0 100px, #25283b22 100px 101px),
     url('/images/bg.png'); /* Ensure bg.png is in the public/images folder */
 
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: top center;
 }
-
 
 .slider {
   position: absolute;
@@ -75,7 +70,7 @@
   font-family: 'ICA Rubrik Black', sans-serif;
   font-size: 2.5em;
   line-height: 1.3em;
-  color:white;
+  color: white;
   margin-bottom: 52px;
   position: relative;
   z-index: 2;
@@ -122,7 +117,8 @@
   }
 
   .item {
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(300px);
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+      translateZ(300px);
   }
 
   .content h1 {
@@ -153,7 +149,8 @@
   }
 
   .item {
-    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(180px);
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+      translateZ(180px);
   }
 
   .content h1 {

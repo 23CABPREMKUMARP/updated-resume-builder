@@ -19,28 +19,22 @@ const ProjectLayout = () => {
   return (
     <div className="flex flex-col gap-8 mb-8">
       {projects.map((proj, index) => (
-     <MoveEditSection
-  key={proj.id}
-  title={proj.title || 'Project'}
-  expanded={expandedIndex === index}
-  clickHandler={() => setExpandedIndex(expandedIndex === index ? null : index)} // replaces handleChange + name
-  length={projects.length}
-  index={index}
-  onDelete={() => remove(index)}
-  onMoveUp={() => onMoveUp(index)}
-  onMoveDown={() => onMoveDown(index)}
->
-  <Project projectInfo={proj} currentIndex={index} />
-</MoveEditSection>
-
+        <MoveEditSection
+          key={proj.id}
+          title={proj.title || 'Project'}
+          expanded={expandedIndex === index}
+          clickHandler={() => setExpandedIndex(expandedIndex === index ? null : index)} // replaces handleChange + name
+          length={projects.length}
+          index={index}
+          onDelete={() => remove(index)}
+          onMoveUp={() => onMoveUp(index)}
+          onMoveDown={() => onMoveDown(index)}
+        >
+          <Project projectInfo={proj} currentIndex={index} />
+        </MoveEditSection>
       ))}
 
-<AddProject
-  handleChange={handleExpand}
-  isEmpty={projects.length === 0}
-/>
-
-
+      <AddProject handleChange={handleExpand} isEmpty={projects.length === 0} />
     </div>
   );
 };

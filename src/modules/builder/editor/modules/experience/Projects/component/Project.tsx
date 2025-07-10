@@ -57,9 +57,7 @@ const Project: React.FC<IProps> = ({ projectInfo, currentIndex }) => {
       <TextField
         label="Title"
         value={projectInfo.title}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          onChangeHandler('title', e.target.value)
-        }
+        onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('title', e.target.value)}
         fullWidth
         required
         variant="filled"
@@ -80,9 +78,7 @@ const Project: React.FC<IProps> = ({ projectInfo, currentIndex }) => {
       <TextField
         label="Project Link"
         value={projectInfo.url}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          onChangeHandler('link', e.target.value)
-        }
+        onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('link', e.target.value)}
         fullWidth
         variant="filled"
         sx={{ mb: 2 }}
@@ -91,9 +87,7 @@ const Project: React.FC<IProps> = ({ projectInfo, currentIndex }) => {
       <TextField
         label="Description"
         value={projectInfo.description}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          onChangeHandler('summary', e.target.value)
-        }
+        onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('summary', e.target.value)}
         fullWidth
         multiline
         rows={3}

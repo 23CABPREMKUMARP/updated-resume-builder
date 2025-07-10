@@ -10,8 +10,7 @@ const LanguagesSection = () => {
   return (
     <div className="mb-6">
       <SectionHeading title="Languages" />
-          <ul className="list-disc list-inside text-xs text-resume-700">
-
+      <ul className="list-disc list-inside text-xs text-resume-700">
         {languages.map((lang) => (
           <li key={lang.id}>
             <span className="font-semibold">{lang.language}</span> – {lang.proficiency}

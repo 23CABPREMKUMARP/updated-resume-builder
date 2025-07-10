@@ -62,8 +62,8 @@ export const resetResumeStore = () => {
   useTechnologies.getState().reset(ResumeData.skills.technologies);
   usePractices.getState().reset(ResumeData.skills.practices);
   useTools.getState().reset(ResumeData.skills.tools);
-useSoftSkillsStore.getState().reset();
-useProjectsStore.getState().resetToDefault();
+  useSoftSkillsStore.getState().reset();
+  useProjectsStore.getState().resetToDefault();
 
   useExperiences.getState().reset(ResumeData.work);
   useEducations.getState().reset(ResumeData.education);
@@ -72,10 +72,10 @@ useProjectsStore.getState().resetToDefault();
   useActivity.getState().reset(ResumeData.activities);
 
   // ❌ Do NOT reset softSkills here – it’s handled in SoftSkillsLayout manually
-useSoftSkillsStore.getState().reset(); // ✅ Loads from resume-data.json
-useLanguagesStore.getState().set(ResumeData.languages ?? []);
+  useSoftSkillsStore.getState().reset(); // ✅ Loads from resume-data.json
+  useLanguagesStore.getState().set(ResumeData.languages ?? []);
 
-// ✅ Reset projects and hobbies
+  // ✅ Reset projects and hobbies
   useHobbiesStore.getState().set(ResumeData.hobbies ?? []);
 };
 
@@ -89,15 +89,12 @@ type ResetOptions = {
   languages?: boolean;
 };
 
-
 export const resetResumeStoreScoped = (options: ResetOptions = {}) => {
   resetResumeStore();
 
   if (options.softSkills) {
     useSoftSkillsStore.getState().set(ResumeData.softSkills ?? []);
   }
-
-  
 
   if (options.hobbies) {
     useHobbiesStore.getState().set(ResumeData.hobbies ?? []);

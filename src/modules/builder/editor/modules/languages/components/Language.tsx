@@ -24,9 +24,7 @@ const Language: React.FC<IProps> = ({ languageInfo, index }) => {
       <TextField
         label="Language"
         value={languageInfo.language}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          onChange('language', e.target.value)
-        }
+        onChange={(e: ChangeEvent<HTMLInputElement>) => onChange('language', e.target.value)}
         fullWidth
         variant="filled"
         sx={{ mb: 2 }}
@@ -34,9 +32,7 @@ const Language: React.FC<IProps> = ({ languageInfo, index }) => {
       <TextField
         label="Proficiency"
         value={languageInfo.proficiency}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          onChange('proficiency', e.target.value)
-        }
+        onChange={(e: ChangeEvent<HTMLInputElement>) => onChange('proficiency', e.target.value)}
         fullWidth
         variant="filled"
       />

@@ -7,7 +7,6 @@ import { ISkillItem } from '@/stores/skill.interface';
 import { ILanguageItem } from '@/stores/languages.interface';
 
 export const SectionValidator = ({
-
   value,
   children,
 }: {

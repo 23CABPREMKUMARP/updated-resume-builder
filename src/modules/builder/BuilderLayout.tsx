@@ -26,8 +26,8 @@ const BuilderLayout = () => {
       <footer className="print:hidden">
         <Tooltip title="Share feedback">
           <a
-href='https://docs.google.com/forms/d/e/1FAIpQLSdYFku_2L7ztkGg_IVonmtcB0_0I_WNLFvbsdyrpo18SrCrmA/viewform?usp=dialog'
-  target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdYFku_2L7ztkGg_IVonmtcB0_0I_WNLFvbsdyrpo18SrCrmA/viewform?usp=dialog"
+            target="_blank"
             rel="noreferrer"
             className="fixed w-14 h-14 rounded-full bottom-4 left-4 flex justify-center items-center bg-resume-50 shadow-level-4dp"
           >

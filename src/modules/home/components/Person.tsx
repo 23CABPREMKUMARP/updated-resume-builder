@@ -18,7 +18,6 @@ const PersonCard = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-
 const ProfileSocial = ({
   github,
   linkedin,

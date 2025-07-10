@@ -40,20 +40,20 @@ const LanguageLayout = () => {
         onChange={(e) => setLanguage(e.target.value)}
         variant="outlined"
       />
-    <TextField
-  select
-  label="Proficiency"
-  value={proficiency}
-  onChange={(e) => setProficiency(e.target.value)}
-  variant="outlined"
-  SelectProps={{ native: true }}
->
-  <option value="">Select</option>
-  <option value="Native">Native</option>
-  <option value="Fluent">Fluent</option>
-  <option value="Intermediate">Intermediate</option>
-  <option value="Basic">Basic</option>
-</TextField>
+      <TextField
+        select
+        label="Proficiency"
+        value={proficiency}
+        onChange={(e) => setProficiency(e.target.value)}
+        variant="outlined"
+        SelectProps={{ native: true }}
+      >
+        <option value="">Select</option>
+        <option value="Native">Native</option>
+        <option value="Fluent">Fluent</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Basic">Basic</option>
+      </TextField>
 
       <Button onClick={handleAdd} variant="contained">
         Add Language
