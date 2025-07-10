@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { StateContext } from '@/modules/builder/resume/ResumeLayout';
+import { StateContext, ResumeData } from '@/modules/builder/resume/ResumeLayout';
+
 import { BasicIntro } from './components/BasicIntro';
 import { EducationSection } from './components/Education';
 import { VolunteerSection } from './components/Volunteer';
@@ -17,6 +18,7 @@ import { useLanguagesStore } from '@/stores/languages';
 import { useProjectsStore } from '@/stores/projects';
 
 import resumeData from '@/helpers/constants/resume-data.json';
+const resumeDataFromContext = useContext(StateContext) as ResumeData;
 
 // Define interfaces locally for single-file use
 interface IItem {
@@ -116,6 +118,7 @@ export default function MordernTemplate() {
       setLanguages(resumeData.languages.map((l: any) => l.language));
     }
   }, []);
+if (!resumeDataFromContext) return null;
 
   return (
     <div className="p-2">
