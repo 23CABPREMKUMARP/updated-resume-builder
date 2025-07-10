@@ -1,4 +1,3 @@
-import { useProjectsStore } from '@/stores/projects';
 import { useEffect } from 'react';
 import resumeData from '@/helpers/constants/resume-data.json';
 
@@ -9,7 +8,6 @@ import { useLanguagesStore } from '@/stores/languages';
 const ResumeHydrator = () => {
   const { softSkills, set: setSoftSkills } = useSoftSkillsStore();
   const { hobbies, set: setHobbies } = useHobbiesStore();
-  const { languages, set: setLanguages } = useLanguagesStore(); // ✅
 
   useEffect(() => {
     if (softSkills.length === 0 && resumeData.softSkills) {
@@ -24,7 +22,7 @@ const ResumeHydrator = () => {
     if (languages.length === 0 && resumeData.languages) {
       set(resumeData.languages); // ✅ Make sure data matches ILanguageItem[]
     }
-  }, []);
+  }, [hobbies.length, softSkills.length, setHobbies, setSoftSkills]);
 
   return null;
 };
