@@ -11,39 +11,37 @@ interface IProps {
 
 const Project: React.FC<IProps> = ({ projectInfo, currentIndex }) => {
   const onChangeHandler = useCallback(
-    (name: string, value: any) => {
+    (name: string, value: string | boolean | null) => {
       const updated = { ...projectInfo };
 
       switch (name) {
         case 'title':
-          updated.title = value;
+          updated.title = value as string;
           break;
         case 'techStack':
-          updated.techStack = value;
+          updated.techStack = value as string;
           break;
         case 'link':
-          updated.url = value;
+          updated.url = value as string;
           break;
         case 'summary':
-          updated.description = value;
+          updated.description = value as string;
           break;
         case 'isOngoing':
-          updated.isOngoing = value;
+          updated.isOngoing = value as boolean;
           if (value) updated.endDate = null;
           break;
         case 'startDate':
-          updated.startDate = value;
+          updated.startDate = value as string;
           break;
         case 'endDate':
-          updated.endDate = value;
+          updated.endDate = value as string;
           break;
-        case 'highlight-0':
-        case 'highlight-1':
-        case 'highlight-2':
-        case 'highlight-3':
-        case 'highlight-4':
-          const idx = parseInt(name.split('-')[1]);
-          updated.highlights[idx] = value;
+        default:
+          if (name.startsWith('highlight-')) {
+            const idx = parseInt(name.split('-')[1]);
+            updated.highlights[idx] = value as string;
+          }
           break;
       }
 

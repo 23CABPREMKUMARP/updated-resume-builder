@@ -6,13 +6,31 @@ import { useResumeStore } from '@/stores/useResumeStore';
 import { useTemplates } from '@/stores/useTemplate';
 import { useThemes } from '@/stores/themes';
 import { useZoom } from '@/stores/useZoom';
-import { useProjectsStore } from '@/stores/projects'; // ✅ Add this
-
+import { useProjectsStore } from '@/stores/projects';
 import { useHobbiesStore } from '@/stores/hobbies';
 import { useSoftSkillsStore } from '@/stores/softSkills';
 import { useLanguagesStore } from '@/stores/languages';
 
-export const StateContext: Context<any> = createContext(null);
+// 🧩 Interfaces for mapped resume fields
+interface ResumeLanguage {
+  id?: string;
+  language?: string;
+  proficiency?: string;
+}
+
+interface ResumeProject {
+  id: string;
+  title?: string;
+  techStack?: string;
+  link?: string;
+  summary?: string;
+  startDate?: string | null;
+  endDate?: string | null;
+  isOngoing?: boolean;
+  highlights?: string[];
+}
+
+export const StateContext: Context<unknown> = createContext(null);
 
 export const ResumeLayout = () => {
   const resumeData = useResumeStore();
@@ -32,7 +50,7 @@ export const ResumeLayout = () => {
     const { hobbies } = useHobbiesStore.getState();
     const { softSkills } = useSoftSkillsStore.getState();
     const { languages } = useLanguagesStore.getState();
-    const { projects } = useProjectsStore.getState(); // ✅ Get current Zustand store
+    const { projects } = useProjectsStore.getState();
 
     if (hobbies.length === 0 && resumeHobbies.length > 0) {
       useHobbiesStore.getState().set(resumeHobbies);
@@ -43,7 +61,7 @@ export const ResumeLayout = () => {
     }
 
     if (languages.length === 0 && resumeLanguages.length > 0) {
-      const mappedLanguages = resumeLanguages.map((l: any) => ({
+      const mappedLanguages = resumeLanguages.map((l: ResumeLanguage) => ({
         id: l.id ?? crypto.randomUUID(),
         language: l.language ?? '',
         proficiency: l.proficiency ?? '',
@@ -52,7 +70,7 @@ export const ResumeLayout = () => {
     }
 
     if (projects.length === 0 && resumeProjects.length > 0) {
-      const mappedProjects = resumeProjects.map((proj: any) => ({
+      const mappedProjects = resumeProjects.map((proj: ResumeProject) => ({
         id: proj.id,
         title: proj.title ?? '',
         techStack: proj.techStack ?? '',
@@ -67,17 +85,17 @@ export const ResumeLayout = () => {
       useProjectsStore.getState().reset(mappedProjects);
     }
   }, [resumeData]);
+
   return (
     <div className="mx-5 print:mx-0 mb-2 print:mb-0">
       <div
         style={{ transform: `scale(${zoom})` }}
         className="origin-top transition-all duration-300 ease-linear print:!scale-100"
       >
-        {/* Printable Resume Section */}
         <div className="w-[210mm] h-[296mm] bg-white my-0 mx-auto">
           <StateContext.Provider value={resumeData}>
             <ThemeProvider theme={selectedTheme}>
-              {Template && <Template />} {/* This will internally call LanguagesSection */}
+              {Template && <Template />}
             </ThemeProvider>
           </StateContext.Provider>
         </div>
