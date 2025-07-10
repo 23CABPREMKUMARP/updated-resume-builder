@@ -1,4 +1,3 @@
-// src/templates/modern/MordernTemplate.tsx
 import React, { useContext, useEffect } from 'react';
 import { StateContext } from '@/modules/builder/resume/ResumeLayout';
 import { BasicIntro } from './components/BasicIntro';
@@ -7,11 +6,10 @@ import { VolunteerSection } from './components/Volunteer';
 import { SkillsSection } from './components/Skills';
 import { SummarySection } from './components/Summary';
 import { AwardSection } from './components/Awards';
-import { SectionValidator } from '@/helpers/common/components/ValidSectionRenderer';
+import { SectionValidator, ValidSectionRenderer } from '@/helpers/common/components/ValidSectionRenderer';
 import HobbiesSection from './components/HobbiesSection';
 import ProjectsSection from './components/ProjectsSection';
 import LanguagesSection from './components/LanguagesSection';
-import { ValidSectionRenderer } from '@/helpers/common/components/ValidSectionRenderer';
 
 import { useSoftSkillsStore } from '@/stores/softSkills';
 import { useHobbiesStore } from '@/stores/hobbies';
@@ -19,6 +17,60 @@ import { useLanguagesStore } from '@/stores/languages';
 import { useProjectsStore } from '@/stores/projects';
 
 import resumeData from '@/helpers/constants/resume-data.json';
+
+// Define interfaces locally for single-file use
+interface IItem {
+  name: string;
+  level: number;
+}
+interface ISkillItem {
+  name: string;
+  level: number;
+}
+interface IEducationItem {
+  institution: string;
+  area: string;
+  studyType: string;
+  startDate: string;
+  endDate: string;
+  score?: string;
+}
+interface IAwardItem {
+  title: string;
+  date: string;
+  awarder: string;
+  summary: string;
+}
+interface IVolunteeringItem {
+  organization: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+  summary: string;
+}
+interface ILanguageItem {
+  language: string;
+}
+interface ResumeData {
+  basics: {
+    name: string;
+    label: string;
+    email: string;
+    phone: string;
+    url: string;
+    image: string;
+    location: string; // treated as 'city'
+  };
+  education: IEducationItem[];
+  skills: {
+    technologies: ISkillItem[];
+    frameworks: ISkillItem[];
+    libraries: ISkillItem[];
+    tools: ISkillItem[];
+  };
+  awards: IAwardItem[];
+  volunteer: IVolunteeringItem[];
+}
 
 export default function MordernTemplate() {
   const resumeDataFromContext = useContext(StateContext);
@@ -36,7 +88,6 @@ export default function MordernTemplate() {
   const setLanguages = useLanguagesStore((s) => s.set);
 
   useEffect(() => {
-    // ✅ Hydrate Zustand stores only once
     const currentProjects = useProjectsStore.getState().projects;
     if (currentProjects.length === 0 && resumeData.projects) {
       const mappedProjects = resumeData.projects.map((proj: any) => ({
@@ -68,43 +119,55 @@ export default function MordernTemplate() {
 
   return (
     <div className="p-2">
-      <BasicIntro
-        name={resumeDataFromContext.basics.name}
-        label={resumeDataFromContext.basics.label}
-        url={resumeDataFromContext.basics.url}
-        email={resumeDataFromContext.basics.email}
-        city={resumeDataFromContext.basics.location.city}
-        phone={resumeDataFromContext.basics.phone}
-        image={resumeDataFromContext.basics.image}
-        profiles={resumeDataFromContext.basics.profiles}
-      />
+      {resumeDataFromContext?.basics && (
+        <BasicIntro
+          name={resumeDataFromContext.basics.name}
+          label={resumeDataFromContext.basics.label}
+          url={resumeDataFromContext.basics.url}
+          email={resumeDataFromContext.basics.email}
+          phone={resumeDataFromContext.basics.phone}
+          city={resumeDataFromContext.basics.location}
+          image={resumeDataFromContext.basics.image}
+        />
+      )}
 
       <div className="flex">
         <div className="basis-[60%] p-3">
-          <SectionValidator value={resumeDataFromContext.basics.summary}>
-            <SummarySection summary={resumeDataFromContext.basics.summary} />
+          <SectionValidator value={resumeDataFromContext?.basics?.summary ?? ''}>
+            <SummarySection summary={resumeDataFromContext?.basics?.summary ?? ''} />
           </SectionValidator>
 
-          <SectionValidator value={resumeDataFromContext.education}>
-            <EducationSection education={resumeDataFromContext.education} />
+          <SectionValidator value={resumeDataFromContext?.education ?? []}>
+            <EducationSection education={resumeDataFromContext?.education ?? []} />
           </SectionValidator>
 
-          <SectionValidator value={resumeDataFromContext.skills.technologies}>
-            <SkillsSection title="Technologies" list={resumeDataFromContext.skills.technologies} />
-          </SectionValidator>
-
-          <SectionValidator value={resumeDataFromContext.skills.frameworks}>
+          <SectionValidator value={resumeDataFromContext?.skills?.technologies ?? []}>
             <SkillsSection
-              title="Frameworks & Libraries"
-              list={resumeDataFromContext.skills.frameworks.concat(
-                resumeDataFromContext.skills.libraries
-              )}
+              title="Technologies"
+              list={resumeDataFromContext?.skills?.technologies ?? []}
             />
           </SectionValidator>
 
-          <SectionValidator value={resumeDataFromContext.skills.tools}>
-            <SkillsSection title="Tools" list={resumeDataFromContext.skills.tools} />
+          <SectionValidator value={[
+            ...(resumeDataFromContext?.skills?.frameworks ?? []),
+            ...(resumeDataFromContext?.skills?.libraries ?? [])
+          ]}>
+            <SkillsSection
+              title="Frameworks & Libraries"
+              list={[
+                ...(resumeDataFromContext?.skills?.frameworks ?? []),
+                ...(resumeDataFromContext?.skills?.libraries ?? [])
+              ]}
+            />
           </SectionValidator>
+
+          <SectionValidator value={resumeDataFromContext?.skills?.tools ?? []}>
+            <SkillsSection
+              title="Tools"
+              list={resumeDataFromContext?.skills?.tools ?? []}
+            />
+          </SectionValidator>
+
           {projects.length > 0 && <ProjectsSection />}
         </div>
 
@@ -122,11 +185,12 @@ export default function MordernTemplate() {
             <LanguagesSection />
           </ValidSectionRenderer>
 
-          <SectionValidator value={resumeDataFromContext.volunteer}>
-            <VolunteerSection volunteer={resumeDataFromContext.volunteer} />
+          <SectionValidator value={resumeDataFromContext?.volunteer ?? []}>
+            <VolunteerSection volunteer={resumeDataFromContext?.volunteer ?? []} />
           </SectionValidator>
-          <SectionValidator value={resumeDataFromContext.awards}>
-            <AwardSection awardsReceived={resumeDataFromContext.awards} />
+
+          <SectionValidator value={resumeDataFromContext?.awards ?? []}>
+            <AwardSection awardsReceived={resumeDataFromContext?.awards ?? []} />
           </SectionValidator>
         </div>
       </div>
