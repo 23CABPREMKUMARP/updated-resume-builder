@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-
 import DataHeaders from './components/EditHeaders';
 import EditSection from './components/EditSection';
 import ErrorBoundary from '@/helpers/common/components/ErrorBoundary';
@@ -10,15 +9,27 @@ import { useHobbiesStore } from '@/stores/hobbies';
 import { useSoftSkillsStore } from '@/stores/softSkills';
 import { useLanguagesStore } from '@/stores/languages';
 import { StateContext } from '@/modules/builder/resume/ResumeLayout';
-
 import ProjectLayout from '@/modules/builder/editor/modules/experience/Projects/ProjectLayout';
 import ResumeHydrator from '@/helpers/common/components/ResumeHydrator';
-<ProjectLayout />;
+
+// ✅ Add interface here
+interface ResumeLanguage {
+  id?: string;
+  language?: string;
+  proficiency?: string;
+}
+
+interface ResumeData {
+  hobbies?: string[];
+  softSkills?: string[];
+  languages?: ResumeLanguage[];
+  // Add other sections if needed
+}
 
 const EditorLayout = () => {
   const [link, setLink] = useState('');
   const section = headers[link];
-  const resumeData = useContext(StateContext);
+  const resumeData = useContext(StateContext) as ResumeData; // ✅ Assert correct type
 
   useEffect(() => {
     const resumeHobbies = resumeData?.hobbies ?? [];

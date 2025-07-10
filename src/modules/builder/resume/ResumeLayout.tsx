@@ -11,7 +11,7 @@ import { useHobbiesStore } from '@/stores/hobbies';
 import { useSoftSkillsStore } from '@/stores/softSkills';
 import { useLanguagesStore } from '@/stores/languages';
 
-// 🧩 Interfaces for mapped resume fields
+// ✅ Interfaces
 interface ResumeLanguage {
   id?: string;
   language?: string;
@@ -30,10 +30,17 @@ interface ResumeProject {
   highlights?: string[];
 }
 
-export const StateContext: Context<unknown> = createContext(null);
+export interface ResumeData {
+  hobbies?: string[];
+  softSkills?: string[];
+  languages?: ResumeLanguage[];
+  projects?: ResumeProject[];
+}
 
-export const ResumeLayout = () => {
-  const resumeData = useResumeStore();
+export const StateContext: Context<ResumeData | null> = createContext(null);
+
+const ResumeLayout = () => {
+  const resumeData = useResumeStore() as ResumeData;
   const zoom = useZoom((state) => state.zoom);
   const templateId = useTemplates((state) => state.activeTemplate.id);
   const Template = AVAILABLE_TEMPLATES[templateId]?.component;
@@ -103,3 +110,5 @@ export const ResumeLayout = () => {
     </div>
   );
 };
+
+export default ResumeLayout;
