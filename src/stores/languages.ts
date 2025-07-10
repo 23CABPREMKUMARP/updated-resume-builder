@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ILanguageItem } from '@/stores/languages.interface';
+import { ILanguageItem } from './languages.interface';
+export type { ILanguageItem };
 
 export interface LanguageState {
   languages: ILanguageItem[];

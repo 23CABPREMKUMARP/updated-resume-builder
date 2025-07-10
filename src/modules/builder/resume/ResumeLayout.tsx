@@ -37,7 +37,7 @@ export interface ResumeData {
   projects?: ResumeProject[];
 }
 
-export const StateContext: Context<ResumeData | null> = createContext(null);
+export const StateContext = createContext<ResumeData | null>(null);
 
 const ResumeLayout = () => {
   const resumeData = useResumeStore() as ResumeData;

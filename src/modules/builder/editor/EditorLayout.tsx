@@ -7,12 +7,12 @@ import { headers } from '@/helpers/constants/editor-data';
 import { resetResumeStore } from '@/stores/useResumeStore';
 import { useHobbiesStore } from '@/stores/hobbies';
 import { useSoftSkillsStore } from '@/stores/softSkills';
-import { useLanguagesStore } from '@/stores/languages';
+import { useLanguagesStore, ILanguageItem } from '@/stores/languages';
+
 import { StateContext } from '@/modules/builder/resume/ResumeLayout';
-import ProjectLayout from '@/modules/builder/editor/modules/experience/Projects/ProjectLayout';
 import ResumeHydrator from '@/helpers/common/components/ResumeHydrator';
 
-// ✅ Add interface here
+// ✅ Interfaces
 interface ResumeLanguage {
   id?: string;
   language?: string;
@@ -23,28 +23,36 @@ interface ResumeData {
   hobbies?: string[];
   softSkills?: string[];
   languages?: ResumeLanguage[];
-  // Add other sections if needed
+  // Add more sections as needed
 }
 
 const EditorLayout = () => {
   const [link, setLink] = useState('');
   const section = headers[link];
-  const resumeData = useContext(StateContext) as ResumeData; // ✅ Assert correct type
+  const resumeData = useContext(StateContext) as ResumeData;
 
   useEffect(() => {
-    const resumeHobbies = resumeData?.hobbies ?? [];
+    if (!resumeData) return;
+
+    const resumeHobbies = resumeData.hobbies ?? [];
     if (resumeHobbies.length > 0) {
       useHobbiesStore.getState().set(resumeHobbies);
     }
 
-    const resumeSoftSkills = resumeData?.softSkills ?? [];
+    const resumeSoftSkills = resumeData.softSkills ?? [];
     if (resumeSoftSkills.length > 0) {
       useSoftSkillsStore.getState().set(resumeSoftSkills);
     }
 
-    const resumeLanguages = resumeData?.languages ?? [];
+    const resumeLanguages = resumeData.languages ?? [];
     if (resumeLanguages.length > 0) {
-      useLanguagesStore.getState().set(resumeLanguages);
+      const mappedLanguages: ILanguageItem[] = resumeLanguages.map((l: ResumeLanguage) => ({
+        id: l.id ?? crypto.randomUUID(),
+        language: l.language ?? '',
+        proficiency: l.proficiency ?? '',
+      }));
+
+      useLanguagesStore.getState().set(mappedLanguages);
     }
   }, [resumeData]);
 
