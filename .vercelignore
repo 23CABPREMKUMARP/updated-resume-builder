@@ -1,0 +1,4 @@
+# .vercelignore
+.husky
+.vscode
+README.md
