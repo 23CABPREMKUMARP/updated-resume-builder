@@ -3,8 +3,8 @@ import React, { ChangeEvent, Fragment, useCallback } from 'react';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useVolunteeringStore } from '@/stores/volunteering';
+import { IVolunteeringItem } from '@/stores/volunteering.interface';
 
-import { IVolunteeringItem } from '/Users/apple/Downloads/resumew-main/src/stores/volunteering.interface';
 import { SwitchWidget } from '@/helpers/common/atoms/Switch';
 import { RichtextEditor } from '@/helpers/common/components/richtext';
 import { DATE_PICKER_FORMAT } from '@/helpers/constants';
