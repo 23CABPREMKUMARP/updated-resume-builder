@@ -25,8 +25,8 @@ import { useAwards } from '@/stores/awards';
 import { useBasicDetails } from '@/stores/basic';
 import { useEducations } from '@/stores/education';
 import { useExperiences } from '@/stores/experience';
-import { useVoluteeringStore } from '@/stores/volunteering';
 import { Menu, MenuItem } from '@mui/material';
+import { useVolunteeringStore } from '@/stores/volunteering';
 
 const TOTAL_TEMPLATES_AVAILABLE = Object.keys(AVAILABLE_TEMPLATES).length;
 
@@ -53,7 +53,6 @@ const NavBarLayout = () => {
       work: useExperiences.getState().experiences,
       education: useEducations.getState().academics,
       awards: useAwards.getState().awards,
-      volunteer: useVoluteeringStore.getState().volunteeredExps,
       skills: {
         languages: useLanguages.getState().get(),
         frameworks: useFrameworks.getState().get(),
@@ -120,7 +119,6 @@ const NavBarLayout = () => {
         useTools.getState().reset(tools);
         useExperiences.getState().reset(work);
         useEducations.getState().reset(education);
-        useVoluteeringStore.getState().reset(volunteer);
         useAwards.getState().reset(awards);
         useActivity.getState().reset(activities);
         setOpenToast(true);

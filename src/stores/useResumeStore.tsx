@@ -17,11 +17,9 @@ import { useAwards } from './awards';
 import { useBasicDetails } from './basic';
 import { useEducations } from './education';
 import { useExperiences } from './experience';
-import { useVoluteeringStore } from './volunteering';
+
 import { useSoftSkillsStore } from './softSkills';
 import { useHobbiesStore } from './hobbies';
-import { use } from 'react';
-import { lang } from 'jodit/types/core/constants';
 
 /**
  * Hook to return current Zustand-based resume state.
@@ -33,7 +31,6 @@ export const useResumeStore = () => {
     work: useExperiences((state) => state.experiences),
     education: useEducations((state) => state.academics),
     awards: useAwards((state) => state.awards),
-    volunteer: useVoluteeringStore((state) => state.volunteeredExps),
     skills: {
       languages: useLanguages((state) => state.values),
       frameworks: useFrameworks((state) => state.values),
@@ -67,7 +64,6 @@ export const resetResumeStore = () => {
 
   useExperiences.getState().reset(ResumeData.work);
   useEducations.getState().reset(ResumeData.education);
-  useVoluteeringStore.getState().reset(ResumeData.volunteer);
   useAwards.getState().reset(ResumeData.awards);
   useActivity.getState().reset(ResumeData.activities);
 

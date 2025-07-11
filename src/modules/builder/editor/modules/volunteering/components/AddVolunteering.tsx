@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { OutlinedButton } from '@/helpers/common/atoms/Buttons';
-import { useVoluteeringStore } from '@/stores/volunteering';
+import { useVolunteeringStore } from '@/stores/volunteering';
+
 import { IVolunteeringItem } from '@/stores/volunteering.interface';
 
 const NEW_VOLUNTEER_EXP: IVolunteeringItem = {
@@ -22,7 +23,7 @@ const AddVolunteeringExp = ({
   handleChange: (name: string, isExpanded: boolean) => void;
   isEmpty: boolean;
 }) => {
-  const addNewVolunteeringExperience = useVoluteeringStore((state) => state.add);
+const addNewVolunteeringExperience = useVolunteeringStore((state) => state.add);
 
   const onCreateVolunteeringExperience = () => {
     const uniqueExpandedId = `${Math.random()}`;

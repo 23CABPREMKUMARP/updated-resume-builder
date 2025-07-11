@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useVoluteeringStore } from '@/stores/volunteering';
+import { useVolunteeringStore } from '@/stores/volunteering';
 import AddVolunteeringExp from './components/AddVolunteering';
 import Volunteering from './components/Volunteer';
 
 import MoveEditSection from '@/helpers/common/components/MoveEditSectionContainer';
 
 const VolunteeringLayout = () => {
-  const allVolunteeringExps = useVoluteeringStore((state) => state.volunteeredExps);
-  const removeExperience = useVoluteeringStore.getState().remove;
-  const onMoveUp = useVoluteeringStore.getState().onmoveup;
-  const onMoveDown = useVoluteeringStore.getState().onmovedown;
+const allVolunteeringExps = useVolunteeringStore((state) => state.volunteeredExps);
+const removeExperience = useVolunteeringStore.getState().remove;
+const onMoveUp = useVolunteeringStore.getState().onmoveup;
+const onMoveDown = useVolunteeringStore.getState().onmovedown;
 
   const [expanded, setExpanded] = useState<string | false>(false);
 

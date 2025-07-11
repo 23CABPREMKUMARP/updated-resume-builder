@@ -6,12 +6,12 @@ import { dateParser } from '@/helpers/utils';
 import { SectionList } from '../atoms/SectionList';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 import { useRef } from 'react';
-import { useVoluteeringStore } from '../../../stores/volunteering';
+import { useVolunteeringStore } from '/Users/apple/Downloads/resumew-main/src/stores/volunteering';
 import { scrollToElement } from '../../../helpers/utils/index';
 
 export const VolunteerSection = ({ volunteer }: { volunteer: IVolunteer[] }) => {
   const volunteerRef = useRef<null | HTMLDivElement>(null);
-  useVoluteeringStore.subscribe(() => {
+  useVolunteeringStore.subscribe(() => {
     scrollToElement(volunteerRef);
   });
 

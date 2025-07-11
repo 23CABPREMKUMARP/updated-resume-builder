@@ -1,9 +1,10 @@
 import { create } from 'zustand';
 import { GetState, SetState } from './store.interface';
 import { persist } from 'zustand/middleware';
-import { produce } from 'immer';
+import { Immer, produce } from 'immer';
 import resumeData from '@/helpers/constants/resume-data.json';
 import { IVolunteeringItem, IVolunteeringStore } from './volunteering.interface';
+import { immer } from 'zustand/middleware/immer';
 
 const addVolunteering =
   (set: SetState<IVolunteeringStore>) =>
@@ -48,6 +49,7 @@ const setVolunteeringExps =
     });
   };
 
+
 const updatedVolunteeringExp =
   (set: SetState<IVolunteeringStore>) => (index: number, updatedInfo: IVolunteeringItem) => {
     set(
@@ -85,10 +87,9 @@ const onMoveDown = (set: SetState<IVolunteeringStore>) => (index: number) => {
     })
   );
 };
-
-export const useVoluteeringStore = create<IVolunteeringStore>()(
+export const useVolunteeringStore = create<IVolunteeringStore>()(
   persist(
-    (set, get) => ({
+    immer((set, get) => ({
       volunteeredExps: resumeData.volunteer,
       add: addVolunteering(set),
       get: getVolunteeringExp(get),
@@ -97,7 +98,8 @@ export const useVoluteeringStore = create<IVolunteeringStore>()(
       onmoveup: onMoveUp(set),
       onmovedown: onMoveDown(set),
       updatedVolunteeringExp: updatedVolunteeringExp(set),
-    }),
-    { name: 'volunteering' }
-  )
+    })),
+    {
+      name: 'volunteering-storage',
+    }  )
 );

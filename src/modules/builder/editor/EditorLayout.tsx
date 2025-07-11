@@ -7,8 +7,7 @@ import { headers } from '@/helpers/constants/editor-data';
 import { resetResumeStore } from '@/stores/useResumeStore';
 import { useHobbiesStore } from '@/stores/hobbies';
 import { useSoftSkillsStore } from '@/stores/softSkills';
-import { useLanguagesStore, ILanguageItem } from '@/stores/languages';
-
+import { useLanguagesStore, ILanguageItem } from '@/stores/languages'; // ✅ import ILanguageItem
 import { StateContext } from '@/modules/builder/resume/ResumeLayout';
 import ResumeHydrator from '@/helpers/common/components/ResumeHydrator';
 
@@ -23,6 +22,7 @@ interface ResumeData {
   hobbies?: string[];
   softSkills?: string[];
   languages?: ResumeLanguage[];
+
   // Add more sections as needed
 }
 
@@ -43,6 +43,7 @@ const EditorLayout = () => {
     if (resumeSoftSkills.length > 0) {
       useSoftSkillsStore.getState().set(resumeSoftSkills);
     }
+
 
     const resumeLanguages = resumeData.languages ?? [];
     if (resumeLanguages.length > 0) {
