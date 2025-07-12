@@ -26,7 +26,6 @@ import { useBasicDetails } from '@/stores/basic';
 import { useEducations } from '@/stores/education';
 import { useExperiences } from '@/stores/experience';
 import { Menu, MenuItem } from '@mui/material';
-import { useVolunteeringStore } from '@/stores/volunteering';
 
 const TOTAL_TEMPLATES_AVAILABLE = Object.keys(AVAILABLE_TEMPLATES).length;
 
