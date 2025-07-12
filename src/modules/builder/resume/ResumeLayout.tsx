@@ -1,4 +1,4 @@
-import React, { Context, createContext, useEffect } from 'react';
+import React, {createContext, useEffect } from 'react';
 import { AVAILABLE_TEMPLATES } from '@/helpers/constants';
 import { ThemeProvider } from '@mui/material/styles';
 
