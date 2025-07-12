@@ -25,12 +25,11 @@ export const EducationSection = ({ education }: { education: IEducation[] }) => 
               <div className="">
                 <SectionSubtitle label={item.institution} />
                 <div className="flex gap-3">
-               <p className="text-xs">
-  {`${dateParser(item.startDate ?? '')} - ${
-    item.isStudyingHere ? 'present' : dateParser(item.endDate ?? '')
-  }`}
-</p>
-
+                  <p className="text-xs">
+                    {`${dateParser(item.startDate ?? '')} - ${
+                      item.isStudyingHere ? 'present' : dateParser(item.endDate ?? '')
+                    }`}
+                  </p>
                 </div>
               </div>
             </div>
