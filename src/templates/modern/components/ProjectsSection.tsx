@@ -20,8 +20,7 @@ const ProjectsSection = () => {
   return (
     <div ref={ref} className="mb-4">
       <SectionHeading title="Projects" />
-{projects.map((proj) => (
-
+      {projects.map((proj) => (
         <div key={proj.id} className="mb-4">
           <SectionTitle
             label={`${proj.title} (${proj.startDate} - ${

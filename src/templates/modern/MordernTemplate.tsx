@@ -12,14 +12,32 @@ import HobbiesSection from './components/HobbiesSection';
 import ProjectsSection from './components/ProjectsSection';
 import LanguagesSection from './components/LanguagesSection';
 import { VolunteerSection } from './components/Volunteer';
-import { useVolunteeringStore } from '@/stores/volunteering'; // FIXED import
 
+import type {
+  IEducation,
+  IAwards,
+  IVolunteer, // previously IVolunteeringItem or IVolunteering
+} from '@/stores/index.interface';
+
+import { useVolunteeringStore } from '@/stores/volunteering';
 import { useSoftSkillsStore } from '@/stores/softSkills';
 import { useHobbiesStore } from '@/stores/hobbies';
 import { useLanguagesStore } from '@/stores/languages';
 import { useProjectsStore } from '@/stores/projects';
 
 import resumeData from '@/helpers/constants/resume-data.json';
+
+interface ResumeProject {
+  id: string;
+  title?: string;
+  techStack?: string;
+  link?: string;
+  summary?: string;
+  startDate?: string | null;
+  endDate?: string | null;
+  isOngoing?: boolean;
+  highlights?: string[];
+}
 
 interface ResumeData {
   basics: {
@@ -37,39 +55,24 @@ interface ResumeData {
       url: string;
     }[];
   };
-  education?: any[];
+  education?: IEducation[];
   skills?: {
     technologies: { name: string; level: number }[];
     frameworks: { name: string; level: number }[];
     libraries: { name: string; level: number }[];
     tools: { name: string; level: number }[];
   };
-  awards?: any[];
-  volunteer?: any[];
+  awards?: IAwards[];
+  volunteer?: IVolunteer[];
   hobbies?: string[];
   softSkills?: string[];
-  languages?: {
-    id?: string;
-    language: string;
-    proficiency?: string;
-  }[];
+  languages?: { id?: string; language: string; proficiency?: string }[];
   projects?: ResumeProject[];
-}
-
-interface ResumeProject {
-  id: string;
-  title?: string;
-  techStack?: string;
-  link?: string;
-  summary?: string;
-  startDate?: string | null;
-  endDate?: string | null;
-  isOngoing?: boolean;
-  highlights?: string[];
 }
 
 export default function ModernTemplate() {
   const resumeDataFromContext = useContext(StateContext) as ResumeData;
+
   const volunteering = useVolunteeringStore((state) => state.volunteeredExps);
   const resetVolunteering = useVolunteeringStore((state) => state.reset);
 
@@ -84,50 +87,50 @@ export default function ModernTemplate() {
 
   const languages = useLanguagesStore((s) => s.languages);
   const setLanguages = useLanguagesStore((s) => s.set);
-useEffect(() => {
-  if (projects.length === 0 && resumeData.projects) {
-    const mappedProjects = resumeData.projects.map((proj: ResumeProject) => ({
-      id: proj.id,
-      title: proj.title ?? '',
-      techStack: proj.techStack ?? '',
-      url: proj.link ?? '',
-      description: proj.summary ?? '',
-      startDate: proj.startDate ?? null,
-      endDate: proj.endDate ?? null,
-      isOngoing: proj.isOngoing ?? false,
-      highlights: proj.highlights ?? [],
-    }));
-    resetProjects(mappedProjects);
-  }
 
-  if (softSkills.length === 0 && resumeData.softSkills) {
-    setSoftSkills(resumeData.softSkills);
-  }
+  useEffect(() => {
+    if (projects.length === 0 && resumeData.projects) {
+      const mappedProjects = resumeData.projects.map((proj: ResumeProject) => ({
+        id: proj.id,
+        title: proj.title ?? '',
+        techStack: proj.techStack ?? '',
+        url: proj.link ?? '',
+        description: proj.summary ?? '',
+        startDate: proj.startDate ?? null,
+        endDate: proj.endDate ?? null,
+        isOngoing: proj.isOngoing ?? false,
+        highlights: proj.highlights ?? [],
+      }));
+      resetProjects(mappedProjects);
+    }
 
-  if (hobbies.length === 0 && resumeData.hobbies) {
-    setHobbies(resumeData.hobbies);
-  }
+    if (softSkills.length === 0 && resumeData.softSkills) {
+      setSoftSkills(resumeData.softSkills);
+    }
 
-  if (volunteering.length === 0 && resumeData.volunteer) {
-    resetVolunteering(resumeData.volunteer);
-  }
+    if (hobbies.length === 0 && resumeData.hobbies) {
+      setHobbies(resumeData.hobbies);
+    }
 
-  if (languages.length === 0 && resumeData.languages) {
-    setLanguages(resumeData.languages);
-  }
-}, [
-  projects.length,
-  resetProjects,
-  softSkills.length,
-  setSoftSkills,
-  hobbies.length,
-  setHobbies,
-  volunteering.length,
-  resetVolunteering,
-  languages.length,
-  setLanguages,
-]);
+    if (volunteering.length === 0 && resumeData.volunteer) {
+      resetVolunteering(resumeData.volunteer);
+    }
 
+    if (languages.length === 0 && resumeData.languages) {
+      setLanguages(resumeData.languages);
+    }
+  }, [
+    projects.length,
+    resetProjects,
+    softSkills.length,
+    setSoftSkills,
+    hobbies.length,
+    setHobbies,
+    volunteering.length,
+    resetVolunteering,
+    languages.length,
+    setLanguages,
+  ]);
 
   if (!resumeDataFromContext) return <p>Loading resume data...</p>;
 
@@ -153,7 +156,7 @@ useEffect(() => {
             <SummarySection summary={basics.summary ?? ''} />
           </SectionValidator>
 
-          <SectionValidator value={resumeDataFromContext.education ?? []}>
+          <SectionValidator value={resumeDataFromContext.education as unknown as IEducation[]}>
             <EducationSection education={resumeDataFromContext.education ?? []} />
           </SectionValidator>
 
@@ -197,11 +200,11 @@ useEffect(() => {
           <SectionValidator value={languages ?? []}>
             <LanguagesSection />
           </SectionValidator>
+
           <SectionValidator value={volunteering}>
             <VolunteerSection volunteer={volunteering} />
           </SectionValidator>
-
-          <SectionValidator value={resumeDataFromContext.awards ?? []}>
+          <SectionValidator value={resumeDataFromContext.awards as unknown as IAwards[]}>
             <AwardSection awardsReceived={resumeDataFromContext.awards ?? []} />
           </SectionValidator>
         </div>

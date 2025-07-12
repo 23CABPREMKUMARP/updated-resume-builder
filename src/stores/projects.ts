@@ -4,6 +4,18 @@ import { persist } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
 import resumeData from '@/helpers/constants/resume-data.json';
 
+// Raw resume JSON project structure
+type ResumeProjectRaw = {
+  title?: string;
+  summary?: string;
+  techStack?: string;
+  link?: string;
+  startDate?: string | null;
+  endDate?: string | null;
+  isOngoing?: boolean;
+  highlights?: string[];
+};
+
 // Interface for a single project
 export interface IProjectItem {
   id: string;
@@ -30,19 +42,24 @@ export interface ProjectsState {
   updateProject: (index: number, updated: IProjectItem) => void;
 }
 
-// Extract and format the initial projects from resume-data
-const DEFAULT_PROJECTS: IProjectItem[] =
-  resumeData.projects?.map((proj: any) => ({
+// Utility: map raw project to IProjectItem
+const mapProjectsFromRaw = (raw: ResumeProjectRaw[] = []): IProjectItem[] =>
+  raw.map((proj) => ({
     id: uuidv4(),
     title: proj.title ?? '',
-    description: proj.description ?? '',
+    description: proj.summary ?? '',
     techStack: proj.techStack ?? '',
-    url: proj.url ?? '',
+    url: proj.link ?? '',
     startDate: proj.startDate ?? null,
     endDate: proj.endDate ?? null,
     isOngoing: proj.isOngoing ?? false,
     highlights: proj.highlights ?? [],
-  })) ?? [];
+  }));
+
+// Extract and format the initial projects from resume-data
+const DEFAULT_PROJECTS: IProjectItem[] = mapProjectsFromRaw(
+  resumeData.projects as ResumeProjectRaw[]
+);
 
 export const useProjectsStore = create<ProjectsState>()(
   persist(
@@ -76,19 +93,7 @@ export const useProjectsStore = create<ProjectsState>()(
       },
 
       resetToDefault: () => {
-        const defaultProjects =
-          resumeData.projects?.map((proj: any) => ({
-            id: uuidv4(),
-            title: proj.title ?? '',
-            description: proj.description ?? '',
-            techStack: proj.techStack ?? '',
-            url: proj.url ?? '',
-            startDate: proj.startDate ?? null,
-            endDate: proj.endDate ?? null,
-            isOngoing: proj.isOngoing ?? false,
-            highlights: proj.highlights ?? [],
-          })) ?? [];
-
+        const defaultProjects = mapProjectsFromRaw(resumeData.projects as ResumeProjectRaw[]);
         set({ projects: defaultProjects });
       },
 

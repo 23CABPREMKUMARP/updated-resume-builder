@@ -60,15 +60,23 @@ export interface IWorkIntrf {
 export interface IEducation {
   id: string;
   institution: string;
-  url: string;
-  studyType: string;
   area: string;
-  startDate: dayjs.Dayjs;
-  isStudyingHere: boolean;
-  endDate: dayjs.Dayjs;
-  score: string;
-  courses: string[];
-  website: string;
+  studyType: string;
+  startDate?: string;
+  endDate?: string;
+  score?: string;
+  courses?: string[];
+  url?: string;
+  website?: string;
+  isStudyingHere?: boolean;
+}
+
+export interface IAwards {
+  id: string;
+  title: string;
+  date: string;
+  awarder: string;
+  summary?: string;
 }
 
 export interface IVolunteer {
@@ -81,14 +89,6 @@ export interface IVolunteer {
   summary: string;
   highlights: string[];
   isVolunteeringNow: boolean;
-}
-
-export interface IAwards {
-  id: string;
-  title: string;
-  awarder: string;
-  date: dayjs.Dayjs;
-  summary: string;
 }
 
 export interface IResume {
