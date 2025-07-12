@@ -44,7 +44,6 @@ const EditorLayout = () => {
       useSoftSkillsStore.getState().set(resumeSoftSkills);
     }
 
-
     const resumeLanguages = resumeData.languages ?? [];
     if (resumeLanguages.length > 0) {
       const mappedLanguages: ILanguageItem[] = resumeLanguages.map((l: ResumeLanguage) => ({

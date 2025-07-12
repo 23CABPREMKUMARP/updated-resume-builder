@@ -9,7 +9,6 @@ import HobbiesLayout from '@/modules/builder/editor/modules/hobbies/HobbiesLayou
 import SoftSkillsLayout from '@/modules/builder/editor/modules/softSkills/SoftSkillsLayout';
 import ProjectLayout from '@/modules/builder/editor/modules/experience/Projects/ProjectLayout'; // ✅ Add this
 import VolunteeringLayout from '@/modules/builder/editor/modules/volunteering/VolunteeringLayout';
-import Volunteer from '@/modules/builder/editor/modules/volunteering/components/Volunteer';
 
 export const headers: {
   [key: string]: { title: string; component: () => JSX.Element };
@@ -23,7 +22,7 @@ export const headers: {
   hobbies: { title: 'Hobbies', component: HobbiesLayout },
   'soft-skills': { title: 'Soft Skills', component: SoftSkillsLayout },
   languages: { title: 'Languages', component: LanguageLayout },
-volunteer:{title: 'Volunteering', component: VolunteeringLayout}, // ✅ Add this
+  volunteer: { title: 'Volunteering', component: VolunteeringLayout }, // ✅ Add this
   // ✅ ✅ Add this:
   projects: { title: 'Projects', component: ProjectLayout },
 };

@@ -49,7 +49,6 @@ const setVolunteeringExps =
     });
   };
 
-
 const updatedVolunteeringExp =
   (set: SetState<IVolunteeringStore>) => (index: number, updatedInfo: IVolunteeringItem) => {
     set(
@@ -101,5 +100,6 @@ export const useVolunteeringStore = create<IVolunteeringStore>()(
     })),
     {
       name: 'volunteering-storage',
-    }  )
+    }
+  )
 );

@@ -71,7 +71,7 @@ interface ResumeProject {
 export default function ModernTemplate() {
   const resumeDataFromContext = useContext(StateContext) as ResumeData;
   const volunteering = useVolunteeringStore((state) => state.volunteeredExps);
-const resetVolunteering = useVolunteeringStore((state) => state.reset);
+  const resetVolunteering = useVolunteeringStore((state) => state.reset);
 
   const softSkills = useSoftSkillsStore((s) => s.softSkills);
   const setSoftSkills = useSoftSkillsStore((s) => s.set);
@@ -108,9 +108,9 @@ const resetVolunteering = useVolunteeringStore((state) => state.reset);
     if (hobbies.length === 0 && resumeData.hobbies) {
       setHobbies(resumeData.hobbies);
     }
-if (volunteering.length === 0 && resumeData.volunteer) {
-  resetVolunteering(resumeData.volunteer);
-}
+    if (volunteering.length === 0 && resumeData.volunteer) {
+      resetVolunteering(resumeData.volunteer);
+    }
 
     if (languages.length === 0 && resumeData.languages) {
       setLanguages(resumeData.languages);
@@ -146,13 +146,22 @@ if (volunteering.length === 0 && resumeData.volunteer) {
           </SectionValidator>
 
           <SectionValidator value={resumeDataFromContext.skills?.technologies ?? []}>
-            <SkillsSection title="Technologies" list={resumeDataFromContext.skills?.technologies ?? []} />
+            <SkillsSection
+              title="Technologies"
+              list={resumeDataFromContext.skills?.technologies ?? []}
+            />
           </SectionValidator>
 
-          <SectionValidator value={(resumeDataFromContext.skills?.frameworks ?? []).concat(resumeDataFromContext.skills?.libraries ?? [])}>
+          <SectionValidator
+            value={(resumeDataFromContext.skills?.frameworks ?? []).concat(
+              resumeDataFromContext.skills?.libraries ?? []
+            )}
+          >
             <SkillsSection
               title="Frameworks & Libraries"
-              list={(resumeDataFromContext.skills?.frameworks ?? []).concat(resumeDataFromContext.skills?.libraries ?? [])}
+              list={(resumeDataFromContext.skills?.frameworks ?? []).concat(
+                resumeDataFromContext.skills?.libraries ?? []
+              )}
             />
           </SectionValidator>
 
@@ -173,14 +182,12 @@ if (volunteering.length === 0 && resumeData.volunteer) {
             />
           </SectionValidator>
 
-
           <SectionValidator value={languages ?? []}>
             <LanguagesSection />
           </SectionValidator>
-<SectionValidator value={volunteering}>
-  <VolunteerSection volunteer={volunteering} />
-</SectionValidator>
-
+          <SectionValidator value={volunteering}>
+            <VolunteerSection volunteer={volunteering} />
+          </SectionValidator>
 
           <SectionValidator value={resumeDataFromContext.awards ?? []}>
             <AwardSection awardsReceived={resumeDataFromContext.awards ?? []} />

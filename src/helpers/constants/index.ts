@@ -34,8 +34,6 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
       ssr: false,
     }),
   },
-  
-  
 };
 
 export const CUSTOM_THEME_COLOR: IThemeColor = {

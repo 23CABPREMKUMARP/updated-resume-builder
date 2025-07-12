@@ -6,10 +6,10 @@ import Volunteering from './components/Volunteer';
 import MoveEditSection from '@/helpers/common/components/MoveEditSectionContainer';
 
 const VolunteeringLayout = () => {
-const allVolunteeringExps = useVolunteeringStore((state) => state.volunteeredExps);
-const removeExperience = useVolunteeringStore.getState().remove;
-const onMoveUp = useVolunteeringStore.getState().onmoveup;
-const onMoveDown = useVolunteeringStore.getState().onmovedown;
+  const allVolunteeringExps = useVolunteeringStore((state) => state.volunteeredExps);
+  const removeExperience = useVolunteeringStore.getState().remove;
+  const onMoveUp = useVolunteeringStore.getState().onmoveup;
+  const onMoveDown = useVolunteeringStore.getState().onmovedown;
 
   const [expanded, setExpanded] = useState<string | false>(false);
 

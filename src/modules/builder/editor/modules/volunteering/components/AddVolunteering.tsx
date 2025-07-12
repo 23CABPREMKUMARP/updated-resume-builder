@@ -23,7 +23,7 @@ const AddVolunteeringExp = ({
   handleChange: (name: string, isExpanded: boolean) => void;
   isEmpty: boolean;
 }) => {
-const addNewVolunteeringExperience = useVolunteeringStore((state) => state.add);
+  const addNewVolunteeringExperience = useVolunteeringStore((state) => state.add);
 
   const onCreateVolunteeringExperience = () => {
     const uniqueExpandedId = `${Math.random()}`;

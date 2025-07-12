@@ -11,11 +11,7 @@ export const OutlinedButton = (props: ButtonProps) => (
 );
 
 export const TextButton = (props: ButtonProps) => (
-  <Button
-    variant="text"
-    className="text-resume-900"
-    {...props}
-  >
+  <Button variant="text" className="text-resume-900" {...props}>
     {props.children}
   </Button>
 );

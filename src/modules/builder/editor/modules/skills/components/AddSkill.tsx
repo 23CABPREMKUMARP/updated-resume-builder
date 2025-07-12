@@ -72,22 +72,18 @@ const AddSkill = ({
       />
       {hasLevel && <SliderValue level={level} setLevel={setLevel} />}
       <div className="flex gap-2 mt-3">
-<OutlinedButton type="button" onClick={doneHandler} disabled={disabled}>
-  Add
-</OutlinedButton>
+        <OutlinedButton type="button" onClick={doneHandler} disabled={disabled}>
+          Add
+        </OutlinedButton>
 
-<TextButton type="button" onClick={toggleForm}>
-  Cancel
-</TextButton>
+        <TextButton type="button" onClick={toggleForm}>
+          Cancel
+        </TextButton>
       </div>
     </form>
   );
 
-  return showForm ? formEl : (
-    <OutlinedButton onClick={toggleForm}>
-      + Add more
-    </OutlinedButton>
-  );
+  return showForm ? formEl : <OutlinedButton onClick={toggleForm}>+ Add more</OutlinedButton>;
 };
 
 export default AddSkill;
