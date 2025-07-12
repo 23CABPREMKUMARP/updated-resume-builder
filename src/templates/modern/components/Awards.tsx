@@ -30,7 +30,8 @@ export const AwardSection = ({ awardsReceived }: { awardsReceived: IAwards[] }) 
               </div>
             </div>
             <SectionList>
-              <HTMLRenderer htmlString={award.summary} />
+<HTMLRenderer htmlString={award.summary ?? ''} />
+
             </SectionList>
           </div>
         );
