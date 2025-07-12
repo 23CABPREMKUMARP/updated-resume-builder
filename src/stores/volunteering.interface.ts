@@ -1,23 +1,22 @@
-// src/stores/volunteering.interface.ts
 export interface IVolunteeringItem {
   id: string;
   organization: string;
   position: string;
+  url: string;
   startDate: string | null;
-  isVolunteeringNow: boolean;
   endDate: string | null;
   summary: string;
-  url?: string;
-  highlights?: string[];
+  highlights: string[];
+  isVolunteeringNow: boolean;
 }
 
 export interface IVolunteeringStore {
   volunteeredExps: IVolunteeringItem[];
-  add: (item: IVolunteeringItem) => void;
+  add: (newVolunteering: IVolunteeringItem) => void;
+  get: (index: number) => void;
   remove: (index: number) => void;
-  reset: (items: IVolunteeringItem[]) => void;
-  updatedVolunteeringExp: (index: number, updated: IVolunteeringItem) => void;
-  get: (index: number) => IVolunteeringItem;
+  reset: (values: IVolunteeringItem[]) => void;
   onmoveup: (index: number) => void;
   onmovedown: (index: number) => void;
+  updatedVolunteeringExp: (index: number, updatedInfo: IVolunteeringItem) => void;
 }
