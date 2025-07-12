@@ -84,38 +84,50 @@ export default function ModernTemplate() {
 
   const languages = useLanguagesStore((s) => s.languages);
   const setLanguages = useLanguagesStore((s) => s.set);
+useEffect(() => {
+  if (projects.length === 0 && resumeData.projects) {
+    const mappedProjects = resumeData.projects.map((proj: ResumeProject) => ({
+      id: proj.id,
+      title: proj.title ?? '',
+      techStack: proj.techStack ?? '',
+      url: proj.link ?? '',
+      description: proj.summary ?? '',
+      startDate: proj.startDate ?? null,
+      endDate: proj.endDate ?? null,
+      isOngoing: proj.isOngoing ?? false,
+      highlights: proj.highlights ?? [],
+    }));
+    resetProjects(mappedProjects);
+  }
 
-  useEffect(() => {
-    if (projects.length === 0 && resumeData.projects) {
-      const mappedProjects = resumeData.projects.map((proj: ResumeProject) => ({
-        id: proj.id,
-        title: proj.title ?? '',
-        techStack: proj.techStack ?? '',
-        url: proj.link ?? '',
-        description: proj.summary ?? '',
-        startDate: proj.startDate ?? null,
-        endDate: proj.endDate ?? null,
-        isOngoing: proj.isOngoing ?? false,
-        highlights: proj.highlights ?? [],
-      }));
-      resetProjects(mappedProjects);
-    }
+  if (softSkills.length === 0 && resumeData.softSkills) {
+    setSoftSkills(resumeData.softSkills);
+  }
 
-    if (softSkills.length === 0 && resumeData.softSkills) {
-      setSoftSkills(resumeData.softSkills);
-    }
+  if (hobbies.length === 0 && resumeData.hobbies) {
+    setHobbies(resumeData.hobbies);
+  }
 
-    if (hobbies.length === 0 && resumeData.hobbies) {
-      setHobbies(resumeData.hobbies);
-    }
-    if (volunteering.length === 0 && resumeData.volunteer) {
-      resetVolunteering(resumeData.volunteer);
-    }
+  if (volunteering.length === 0 && resumeData.volunteer) {
+    resetVolunteering(resumeData.volunteer);
+  }
 
-    if (languages.length === 0 && resumeData.languages) {
-      setLanguages(resumeData.languages);
-    }
-  }, []);
+  if (languages.length === 0 && resumeData.languages) {
+    setLanguages(resumeData.languages);
+  }
+}, [
+  projects.length,
+  resetProjects,
+  softSkills.length,
+  setSoftSkills,
+  hobbies.length,
+  setHobbies,
+  volunteering.length,
+  resetVolunteering,
+  languages.length,
+  setLanguages,
+]);
+
 
   if (!resumeDataFromContext) return <p>Loading resume data...</p>;
 
