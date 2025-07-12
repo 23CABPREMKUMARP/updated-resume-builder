@@ -3,9 +3,9 @@ import { ProfileContact } from '../atoms/ProfileContact';
 import { ProfileImage } from '@/helpers/common/components/ProfileImage';
 import { ProfileName } from '../atoms/ProfileName';
 import { SectionSubtitle } from '../atoms/SectionSubtitle';
-import { IProfiles } from 'src/stores/basic.interface';
+import { IProfiles } from '@/stores/basic.interface';
 import React from 'react';
-import { socialIcons } from 'src/helpers/icons';
+import { socialIcons } from '@/helpers/icons';
 
 function SocialIcons({ profiles }: { profiles: IProfiles[] }) {
   return (
