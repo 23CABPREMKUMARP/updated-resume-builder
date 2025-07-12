@@ -96,7 +96,6 @@ const NavBarLayout = () => {
             involvements: '',
             achievements: '',
           },
-          volunteer = [],
           awards = [],
         } = uploadedResumeJSON;
         const {

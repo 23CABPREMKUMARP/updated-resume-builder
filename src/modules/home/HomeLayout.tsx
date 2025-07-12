@@ -22,14 +22,13 @@ const HomeLayout = () => {
               className={styles.item}
               style={{ '--position': i + 1 } as React.CSSProperties}
             >
-          <Image
-  src={`/images/dragon_${i + 1}.${i === 0 ? 'png' : 'jpg'}`}
-  alt={`dragon_${i + 1}`}
-  width={200} // customize width & height appropriately
-  height={200}
-  unoptimized
-/>
-
+              <Image
+                src={`/images/dragon_${i + 1}.${i === 0 ? 'png' : 'jpg'}`}
+                alt={`dragon_${i + 1}`}
+                width={200} // customize width & height appropriately
+                height={200}
+                unoptimized
+              />
             </div>
           ))}
         </div>
