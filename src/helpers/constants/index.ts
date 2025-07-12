@@ -34,14 +34,8 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
       ssr: false,
     }),
   },
-  professional: {
-    id: 'professional',
-    name: 'Professional Resume',
-    thumbnail: '/templates/professional.png',
-    component: dynamic(() => import('@/templates/professional/ProfessionalTemplate'), {
-      ssr: false,
-    }),
-  },
+  
+  
 };
 
 export const CUSTOM_THEME_COLOR: IThemeColor = {
