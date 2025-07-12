@@ -6,7 +6,8 @@ import { dateParser } from '@/helpers/utils';
 import { SectionList } from '../atoms/SectionList';
 import { HTMLRenderer } from '@/helpers/common/components/HTMLRenderer';
 import { useRef } from 'react';
-import { useVolunteeringStore } from '/Users/apple/Downloads/resumew-main/src/stores/volunteering';
+import { useVolunteeringStore } from '@/stores/volunteering';
+
 import { scrollToElement } from '../../../helpers/utils/index';
 
 export const VolunteerSection = ({ volunteer }: { volunteer: IVolunteer[] }) => {
