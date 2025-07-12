@@ -1,29 +1,21 @@
-import { Button } from '@mui/material';
+import { Button, ButtonProps } from '@mui/material';
 
-export const OutlinedButton = ({
-  onClick,
-  children,
-  disabled = false,
-}: {
-  onClick: () => void;
-  children: React.ReactNode | string;
-  disabled?: boolean;
-}) => (
-  <Button variant="outlined" onClick={onClick} className="text-resume-900" disabled={disabled}>
-    {children}
+export const OutlinedButton = (props: ButtonProps) => (
+  <Button
+    variant="outlined"
+    className="text-resume-900"
+    {...props} // spread all props including `onClick`, `type`, `disabled`, etc.
+  >
+    {props.children}
   </Button>
 );
 
-export const TextButton = ({
-  onClick,
-  children,
-  disabled = false,
-}: {
-  onClick: () => void;
-  children: React.ReactNode | string;
-  disabled?: boolean;
-}) => (
-  <Button variant="outlined" onClick={onClick} className="text-resume-900" disabled={disabled}>
-    {children}
+export const TextButton = (props: ButtonProps) => (
+  <Button
+    variant="text"
+    className="text-resume-900"
+    {...props}
+  >
+    {props.children}
   </Button>
 );

@@ -19,11 +19,12 @@ const AddSkill = ({
   const [level, setLevel] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [errorText, setErrorText] = useState('');
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const toggleForm = () => {
     setShowForm(!showForm);
     setName('');
+    setErrorText('');
   };
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +32,7 @@ const AddSkill = ({
     setErrorText('');
   };
 
-  const submitHandler = (e: ChangeEvent<HTMLFormElement>) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     doneHandler();
   };
@@ -51,11 +52,7 @@ const AddSkill = ({
   };
 
   useEffect(() => {
-    if (name.length > 0) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
+    setDisabled(name.trim().length === 0);
   }, [name]);
 
   const formEl = (
@@ -75,15 +72,22 @@ const AddSkill = ({
       />
       {hasLevel && <SliderValue level={level} setLevel={setLevel} />}
       <div className="flex gap-2 mt-3">
-        <OutlinedButton onClick={doneHandler} disabled={disabled}>
-          Add
-        </OutlinedButton>
-        <TextButton onClick={toggleForm}>Cancel</TextButton>
+<OutlinedButton type="button" onClick={doneHandler} disabled={disabled}>
+  Add
+</OutlinedButton>
+
+<TextButton type="button" onClick={toggleForm}>
+  Cancel
+</TextButton>
       </div>
     </form>
   );
 
-  return showForm ? formEl : <OutlinedButton onClick={toggleForm}>+ Add more</OutlinedButton>;
+  return showForm ? formEl : (
+    <OutlinedButton onClick={toggleForm}>
+      + Add more
+    </OutlinedButton>
+  );
 };
 
 export default AddSkill;
